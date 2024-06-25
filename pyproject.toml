@@ -1,21 +1,22 @@
 [tool.poetry]
-name = "tdd project"
+name = "tdd_project"
 version = "0.0.1"
 description = ""
-authors = ["Nayanna Nara <nayanna501@gmail.com>"]
+authors = ["IohanaMaria <iohana.ma31@gmail.com>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
-fastapi = "^0.104.1"
-uvicorn = "^0.24.0.post1"
-pydantic = "^2.5.1"
-pydantic-settings = "^2.1.0"
-motor = "^3.3.1"
-pytest = "^7.4.3"
-pytest-asyncio = "^0.21.1"
-pre-commit = "^3.5.0"
-httpx = "^0.25.1"
+fastapi = "^0.111.0"
+pydantic = "^2.7.3"
+pydantic-settings = "^2.3.2"
+uvicorn = "^0.30.1"
+motor = "^3.4.0"
+pytest = "^8.2.2"
+pytest-asyncio = "^0.23.7"
+pre-commit = "^3.7.1"
+httpx = "^0.27.0"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
@@ -26,6 +27,7 @@ addopts = [
 ]
 xfail_strict = true
 junit_family = "xunit2"
+
 
 [build-system]
 requires = ["poetry-core"]

@@ -1,8 +1,8 @@
 def product_data():
     return {
-        "name": "Iphone 14 Pro Max",
-        "quantity": 10,
-        "price": "8.500",
+        "name": "Flocão Santa Clara",
+        "quantity": 30,
+        "price": "3.25",
         "status": True,
     }
 
