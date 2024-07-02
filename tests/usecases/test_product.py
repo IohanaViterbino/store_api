@@ -46,8 +46,19 @@ async def test_usecases_update_should_return_sucess(product_up, product_inserted
     product_up.price = 4.50
     result = await product_usecase.update(id=product_inserted.id, body=product_up)
 
+    breakpoint()
     assert isinstance(result, ProductUpdateOut)
 
+@pytest.mark.asyncio
+async def test_usecases_update_should_return_not_found(product_up):
+    product_up.price = 4.50
+    with pytest.raises(NotFoundException) as err:
+        await product_usecase.update(id=UUID("8fb0bbc8-300b-4f9c-8130-40c6eccc1a81"), body=product_up)
+        
+    assert (
+        err.value.message
+        == "Product not found with filter: 8fb0bbc8-300b-4f9c-8130-40c6eccc1a81"
+    )
 
 @pytest.mark.asyncio
 async def test_usecases_delete_should_return_sucess(product_inserted):
