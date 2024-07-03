@@ -1,3 +1,4 @@
+from datetime import datetime
 from decimal import Decimal
 from typing import Annotated, Optional
 from bson import Decimal128
@@ -19,10 +20,10 @@ class ProductIn(ProductBase, BaseSchemaMixin):
 class ProductOut(ProductIn, OutSchema):
     ...
 
-
 def convert_decimal_128(v):
-    return Decimal128(str(v))
-
+    if isinstance(v, Decimal128):
+        return v.to_decimal()
+    return v
 
 Decimal_ = Annotated[Decimal, AfterValidator(convert_decimal_128)]
 

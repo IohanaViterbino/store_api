@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from typing import List
 from uuid import UUID
 import pytest
@@ -46,8 +47,8 @@ async def test_usecases_update_should_return_sucess(product_up, product_inserted
     product_up.price = 4.50
     result = await product_usecase.update(id=product_inserted.id, body=product_up)
 
-    breakpoint()
     assert isinstance(result, ProductUpdateOut)
+    assert result.updated_at != product_inserted.updated_at
 
 @pytest.mark.asyncio
 async def test_usecases_update_should_return_not_found(product_up):

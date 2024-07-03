@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from typing import List
 
 import pytest
@@ -64,12 +65,15 @@ async def test_controller_update_should_return_sucess(
     response = await client.patch(
         f"{products_url}{product_inserted.id}", json={"price": "5.15"}
     )
-    content = response.json()
 
+    content = response.json()
     del content["created_at"]
-    del content["updated_at"]
 
     assert response.status_code == status.HTTP_200_OK
+    
+    assert content['updated_at'] != product_inserted.updated_at
+    del content["updated_at"]
+
     assert content == {
         "id": str(product_inserted.id),
         "name": "Flocão Santa Clara",

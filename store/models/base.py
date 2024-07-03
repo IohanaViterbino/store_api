@@ -20,3 +20,16 @@ class CreateBaseModel(BaseModel):
                 self_dict[key] = Decimal128(str(value))
 
         return self_dict
+
+class UpdateModel(BaseModel):
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+    @model_serializer
+    def set_model(self) -> dict[str, Any]:
+        self_dict = dict(self)
+
+        for key, value in self_dict.items():
+            if isinstance(value, Decimal):
+                self_dict[key] = Decimal128(str(value))
+
+        return self_dict
